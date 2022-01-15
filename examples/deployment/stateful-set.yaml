@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: app1-deployment
+  labels:
+    app: app1
+spec:
+  serviceName: "app-service"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+      - name: front
+        image: davit/k8s-app-front
+        ports:
+        - containerPort: 80
+      - name: back
+        image: davit/node_app:light
+        ports:
+        - containerPort: 3000

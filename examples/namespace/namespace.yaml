@@ -1,0 +1,5 @@
+# kubectl create namespace sangu
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sangu

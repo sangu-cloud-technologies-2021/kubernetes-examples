@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: app-deployment
+  labels:
+    app: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: front
+        image: davit/k8s-app-front
+        ports:
+        - containerPort: 80
+      - name: back
+        image: davit/node_app:light
+        ports:
+        - containerPort: 3000
